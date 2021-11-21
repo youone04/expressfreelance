@@ -6,16 +6,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 let routes = require('./api/router');
-routes(app);
+routes(app);   
 
-app.get('*', function(req, res, next) {
-      var err = new Error();
-
-      err.status = 404;
-      res.send('data')
-    //   next('data');
-    });
-    
+app.get('*', (req, res , next) => {
+        res.status(404);
+        res.send('tidak ada routing');
+})
     
 app.listen(3000 , () => {
     console.log('Server terhubung di port 3000');
