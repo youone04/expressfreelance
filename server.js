@@ -11,6 +11,13 @@ app.use(fileUpload({
     useTempFiles : true
 }));
 
+const cors = require('cors');
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
+
 app.use('/uploads' , express.static('uploads'));
 
 let routes = require('./api/router');
@@ -22,6 +29,6 @@ app.get('*', (req, res , next) => {
         res.send('tidak ada routing');
 })
     
-app.listen(3000 , () => {
+app.listen(8800 , () => {
     console.log('Server terhubung di port 3000');
 });

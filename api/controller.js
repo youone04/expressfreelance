@@ -31,8 +31,22 @@ exports.read = function(req , res){
 
 }
 
+exports.readSinggle = function(req , res){
+    const id = req.params.id;
+
+    database.query("SELECT * FROM mahasiswa WHERE id= ?" ,[id] , function(err , rows , fileds){
+        if(err){
+            res.send(err);
+        }else{
+            response.data(rows , res);
+        }
+    })
+
+}
+
+
 exports.update = (req, res) => {
-    let id = req.body.id;
+    let id = req.params.id;
     let namaForm = req.body.nama;
     let nim = req.body.nim;
     let prodi = req.body.prodi;
@@ -58,8 +72,8 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    let id = req.body.id;
-
+    let id = req.params.id;
+    
     database.query("DELETE FROM mahasiswa WHERE id = ?" ,[id] , (err , rows, fileds) => {
         if(err){
             res.send(err);

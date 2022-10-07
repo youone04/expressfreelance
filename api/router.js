@@ -4,6 +4,7 @@ module.exports = (app) => {
     app.route('/mahasiswa').get(json.index);
     app.route('/create').post(json.create);
     app.route('/read').get(json.read);
-    app.route('/update').put(json.update);
-    app.route('/delete').delete(json.delete);
+    app.route('/read/:id').get(json.readSinggle);
+    app.route('/update/:id').put(json.update);
+    app.route('/delete/:id').delete(json.delete);
 }
